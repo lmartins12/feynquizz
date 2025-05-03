@@ -9,11 +9,10 @@
     "test": "ng test",
     "serve:ssr:feynquizz": "node dist/feynquizz/server/server.mjs",
     "lint": "ng lint",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{ts,js,json,scss,html}": [
-      "eslint --fix",
       "prettier --write"
     ]
   },
