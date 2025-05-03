@@ -6,5 +6,8 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideIonicAngular({})]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),provideRouter(routes),
+    provideClientHydration(),
+    provideIonicAngular({}),
+  ],
 };
