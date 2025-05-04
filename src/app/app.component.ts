@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { StorageService } from './data/storage';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: `<router-outlet />`,
 })
-export class AppComponent {
-  title = 'feynquizz';
+export class AppComponent implements OnInit {
+  private storageService = inject(StorageService);
+
+  async ngOnInit() {
+    await this.storageService.init();
+  }
 }
