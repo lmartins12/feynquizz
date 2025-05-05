@@ -1,0 +1,107 @@
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Configuração da IA</ion-card-title>
+      <ion-card-subtitle class="ion-text-center"
+        >Configure os parâmetros para integração com OpenAI</ion-card-subtitle
+      >
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="isLoading" class="loading-container">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Processando...</p>
+      </div>
+
+      <form [formGroup]="configForm" (ngSubmit)="saveConfig()" [class.form-disabled]="isLoading">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">URL da API</ion-label>
+            <ion-input
+              type="url"
+              formControlName="apiUrl"
+              placeholder="Ex: https://api.openai.com/v1/chat/completions"
+            ></ion-input>
+            <ion-note
+              slot="error"
+              *ngIf="configForm.get('apiUrl')?.touched && configForm.get('apiUrl')?.errors?.['required']"
+            >
+              URL da API é obrigatória
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">
+              Chave da API
+              <ion-text *ngIf="hasApiKey" color="medium"> (não pode ser editada)</ion-text>
+            </ion-label>
+            <ion-input
+              *ngIf="!hasApiKey"
+              type="text"
+              formControlName="apiKey"
+              placeholder="Sua chave API secreta"
+            ></ion-input>
+            <ion-input
+              *ngIf="hasApiKey"
+              type="text"
+              [disabled]="true"
+              [value]="maskedApiKey"
+            ></ion-input>
+            <ion-note
+              slot="error"
+              *ngIf="configForm.get('apiKey')?.touched && configForm.get('apiKey')?.errors?.['required'] && !hasApiKey"
+            >
+              Chave da API é obrigatória
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Modelo</ion-label>
+            <ion-input
+              type="text"
+              formControlName="model"
+              placeholder="Ex: gpt-3.5-turbo"
+            ></ion-input>
+            <ion-note
+              slot="error"
+              *ngIf="configForm.get('model')?.touched && configForm.get('model')?.errors?.['required']"
+            >
+              Modelo é obrigatório
+            </ion-note>
+          </ion-item>
+        </ion-list>
+
+        <div class="ion-padding">
+          <ion-button expand="block" type="submit" [disabled]="isLoading">
+            <ion-icon [icon]="saveOutline" slot="start"></ion-icon>
+            Salvar Configurações
+          </ion-button>
+
+          <ion-button
+            expand="block"
+            color="danger"
+            type="button"
+            *ngIf="hasApiKey"
+            (click)="removeApiKey()"
+            [disabled]="isLoading"
+            class="ion-margin-top"
+          >
+            <ion-icon [icon]="keyOutline" slot="start"></ion-icon>
+            Remover Chave API
+          </ion-button>
+        </div>
+      </form>
+
+      <div class="ion-padding ion-text-center ion-margin-top">
+        <p>
+          Estas configurações são necessárias para gerar perguntas e avaliar respostas usando IA.
+        </p>
+        <p>
+          <ion-text color="warning"
+            >A chave da API é salva de forma segura e mascarada por segurança.</ion-text
+          >
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

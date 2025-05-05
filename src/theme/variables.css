@@ -1,1 +1,20 @@
 @import "@ionic/angular/css/palettes/dark.class.css";
+
+:root {
+  --color-background: #FFFFED;
+  --color-text-primary: #202020;
+  --color-text-secondary: #505050;
+  --color-text-disabled: #A0A0A0;
+
+  --color-button-primary: #202020;
+  --color-button-text: #FAFAFA;
+  --color-button-secondary: #E0E0D0;
+
+  --color-highlight: #B0C4DE;
+  --color-highlight-hover: #94B3C8;
+
+  --color-success: #A3D9A5;
+  --color-error: #F8A5A5;
+  --color-warning: #FCE38A;
+  --color-info: #A7D6F1;
+}
