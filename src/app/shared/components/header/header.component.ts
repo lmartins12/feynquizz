@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  private readonly router = inject(Router);
+  private readonly navController = inject(NavController);
 
   @Input() canGoBack: boolean = false;
   @Input() title: string = '';
@@ -31,12 +31,12 @@ export class HeaderComponent {
   protected goBack(): void {
     if (this.canGoBack) {
       this.backClicked.emit();
-      setTimeout(() => this.router.navigate(['..']));
+      setTimeout(() => this.navController.back());
     }
   }
 
   protected openConfig(): void {
     this.configClicked.emit();
-    setTimeout(() => this.router.navigate(['/config']));
+    setTimeout(() => this.navController.navigateForward('/config'));
   }
 }
