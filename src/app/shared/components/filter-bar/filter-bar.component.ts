@@ -10,15 +10,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
-export interface OpcaoOrdenacao {
-  valor: string;
-  texto: string;
-}
-
-export interface FiltroAplicado {
-  busca: string;
-  ordenacao: string;
-}
+// Interfaces movidas para core/models/ui.models.ts
+import { SortOption, AppliedFilter } from '../../../core';
 
 @Component({
   selector: 'app-filter-bar',
@@ -30,13 +23,13 @@ export interface FiltroAplicado {
 })
 export class FilterBarComponent {
   @Input() placeholder: string = 'Buscar...';
-  @Input() opcoesOrdenacao: OpcaoOrdenacao[] = [];
+  @Input() opcoesOrdenacao: SortOption[] = [];
   @Input() ordenacaoSelecionada: string = '';
   @Input() valorBusca: string = '';
 
   @Output() buscaAlterada = new EventEmitter<string>();
   @Output() ordenacaoAlterada = new EventEmitter<string>();
-  @Output() filtroAplicado = new EventEmitter<FiltroAplicado>();
+  @Output() filtroAplicado = new EventEmitter<AppliedFilter>();
 
   protected readonly termoBusca = signal<string>('');
   protected readonly ordenacaoAtual = signal<string>('');
@@ -68,8 +61,8 @@ export class FilterBarComponent {
 
   private emitirFiltro(): void {
     this.filtroAplicado.emit({
-      busca: this.termoBusca(),
-      ordenacao: this.ordenacaoAtual(),
+      search: this.termoBusca(),
+      sort: this.ordenacaoAtual(),
     });
   }
 }

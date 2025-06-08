@@ -10,12 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-export interface InfoPaginacao {
-  paginaAtual: number;
-  totalPaginas: number;
-  totalItens: number;
-  itensPorPagina: number;
-}
+import { PaginationInfo } from '../../../core';
 
 @Component({
   selector: 'app-pagination',
@@ -31,7 +26,7 @@ export class PaginationComponent {
   @Input() paginaAtual: number = 1;
 
   @Output() paginaAlterada = new EventEmitter<number>();
-  @Output() infoPaginacao = new EventEmitter<InfoPaginacao>();
+  @Output() infoPaginacao = new EventEmitter<PaginationInfo>();
 
   protected readonly Math = Math;
 
@@ -90,10 +85,10 @@ export class PaginationComponent {
 
   private emitirInfo(pagina: number): void {
     this.infoPaginacao.emit({
-      paginaAtual: pagina,
-      totalPaginas: this.totalPaginas(),
-      totalItens: this.totalItens,
-      itensPorPagina: this.itensPorPagina,
+      currentPage: pagina,
+      totalPages: this.totalPaginas(),
+      totalItems: this.totalItens,
+      itemsPerPage: this.itensPorPagina,
     });
   }
 }

@@ -1,12 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-
-export interface BotaoModal {
-  texto: string;
-  cor?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger';
-  handler?: () => void;
-}
+import { ButtonModal } from '../../../core';
 
 @Component({
   selector: 'app-modal-generic',
@@ -19,7 +14,7 @@ export interface BotaoModal {
 export class ModalGenericComponent {
   @Input() titulo: string = '';
   @Input() mensagem: string = '';
-  @Input() botoes: BotaoModal[] = [];
+  @Input() botoes: ButtonModal[] = [];
   @Input() isOpen: boolean = false;
 
   @Output() modalFechado = new EventEmitter<void>();
