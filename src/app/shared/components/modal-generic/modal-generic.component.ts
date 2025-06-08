@@ -12,24 +12,24 @@ import { ButtonModal } from '../../../core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalGenericComponent {
-  @Input() titulo: string = '';
-  @Input() mensagem: string = '';
-  @Input() botoes: ButtonModal[] = [];
+  @Input() title: string = '';
+  @Input() message: string = '';
+  @Input() buttons: ButtonModal[] = [];
   @Input() isOpen: boolean = false;
 
-  @Output() modalFechado = new EventEmitter<void>();
-  @Output() botaoClicado = new EventEmitter<number>();
+  @Output() modalClosed = new EventEmitter<void>();
+  @Output() buttonClicked = new EventEmitter<number>();
 
-  protected fecharModal(): void {
-    this.modalFechado.emit();
+  protected closeModal(): void {
+    this.modalClosed.emit();
   }
 
-  protected clicarBotao(index: number): void {
-    const botao = this.botoes[index];
-    if (botao?.handler) {
-      botao.handler();
+  protected clickButton(index: number): void {
+    const button = this.buttons[index];
+    if (button?.handler) {
+      button.handler();
     }
-    this.botaoClicado.emit(index);
-    this.fecharModal();
+    this.buttonClicked.emit(index);
+    this.closeModal();
   }
 }

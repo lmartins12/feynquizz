@@ -1,80 +1,102 @@
 .pagination-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  gap: 16px;
   padding: 16px;
   background: var(--ion-color-light);
-  border-top: 1px solid var(--ion-color-light-shade);
+  border-radius: 12px;
+  margin-top: 16px;
+}
 
-  .nav-button {
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  ion-button {
+    --border-radius: 8px;
     --padding-start: 8px;
     --padding-end: 8px;
-    --color: var(--ion-color-medium);
     min-width: 40px;
-    min-height: 40px;
+    height: 40px;
+  }
+}
 
-    &[disabled] {
-      --opacity: 0.3;
-    }
+.page-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
 
-    ion-icon {
-      font-size: 1.2rem;
-    }
+.page-button {
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  min-width: 40px;
+  height: 40px;
+  font-weight: 500;
+
+  &[fill='solid'] {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
   }
 
-  .paginas-numeradas {
-    display: flex;
-    gap: 4px;
-    align-items: center;
+  &[fill='clear'] {
+    --color: var(--ion-color-medium);
 
-    .pagina-button {
+    &:hover {
+      --background: var(--ion-color-step-100);
+    }
+  }
+}
+
+.pagination-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+
+  .info-text {
+    font-size: 0.875rem;
+    color: var(--ion-color-medium);
+    font-weight: 400;
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .pagination-controls {
+    gap: 4px;
+
+    .page-button {
+      min-width: 36px;
+      height: 36px;
       --padding-start: 8px;
       --padding-end: 8px;
-      min-width: 40px;
-      min-height: 40px;
-      font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
+    }
+  }
 
-      &[fill='solid'] {
-        --border-radius: 8px;
-      }
-
-      &[fill='clear'] {
-        --color: var(--ion-color-medium);
-
-        &:hover {
-          --background: var(--ion-color-step-100);
-        }
-      }
+  .pagination-info {
+    .info-text {
+      font-size: 0.8rem;
     }
   }
 }
 
-.info-paginacao {
-  text-align: center;
-  padding: 8px 16px;
-  background: var(--ion-color-light);
-
-  ion-text {
-    font-size: 0.85rem;
-  }
-}
-
-:host-context(.ios) {
+// Dark mode support
+@media (prefers-color-scheme: dark) {
   .pagination-container {
-    .nav-button,
-    .paginas-numeradas .pagina-button {
-      --border-radius: 8px;
-    }
+    background: var(--ion-color-step-100);
   }
-}
 
-:host-context(.md) {
-  .pagination-container {
-    .nav-button,
-    .paginas-numeradas .pagina-button {
-      --border-radius: 8px;
+  .page-button {
+    &[fill='clear'] {
+      --color: var(--ion-color-step-400);
+
+      &:hover {
+        --background: var(--ion-color-step-200);
+      }
     }
   }
 }

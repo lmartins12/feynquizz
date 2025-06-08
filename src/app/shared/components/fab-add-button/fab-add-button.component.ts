@@ -11,17 +11,17 @@ import { IonicModule } from '@ionic/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabAddButtonComponent {
-  @Input() icone: string = 'add';
-  @Input() cor: string = 'primary';
-  @Input() posicao: 'bottom' | 'top' = 'bottom';
-  @Input() lado: 'start' | 'end' | 'center' = 'end';
+  @Input() icon: string = 'add';
+  @Input() color: string = 'primary';
+  @Input() position: 'bottom' | 'top' = 'bottom';
+  @Input() side: 'start' | 'end' | 'center' = 'end';
   @Input() disabled: boolean = false;
 
-  @Output() clicado = new EventEmitter<void>();
+  @Output() clicked = new EventEmitter<void>();
 
-  protected clicar(): void {
+  protected click(): void {
     if (!this.disabled) {
-      this.clicado.emit();
+      this.clicked.emit();
     }
   }
 }

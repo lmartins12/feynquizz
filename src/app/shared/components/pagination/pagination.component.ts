@@ -21,74 +21,72 @@ import { PaginationInfo } from '../../../core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
-  @Input() totalItens: number = 0;
-  @Input() itensPorPagina: number = 10;
-  @Input() paginaAtual: number = 1;
+  @Input() totalItems: number = 0;
+  @Input() itemsPerPage: number = 10;
+  @Input() currentPage: number = 1;
 
-  @Output() paginaAlterada = new EventEmitter<number>();
-  @Output() infoPaginacao = new EventEmitter<PaginationInfo>();
+  @Output() pageChanged = new EventEmitter<number>();
+  @Output() paginationInfo = new EventEmitter<PaginationInfo>();
 
   protected readonly Math = Math;
 
-  protected readonly totalPaginas = computed(() =>
-    Math.ceil(this.totalItens / this.itensPorPagina),
-  );
+  protected readonly totalPages = computed(() => Math.ceil(this.totalItems / this.itemsPerPage));
 
-  protected readonly temPaginaAnterior = computed(() => this.paginaAtual > 1);
+  protected readonly hasPreviousPage = computed(() => this.currentPage > 1);
 
-  protected readonly temProximaPagina = computed(() => this.paginaAtual < this.totalPaginas());
+  protected readonly hasNextPage = computed(() => this.currentPage < this.totalPages());
 
-  protected readonly paginasVisiveis = computed(() => {
-    const total = this.totalPaginas();
-    const atual = this.paginaAtual;
-    const paginas: number[] = [];
+  protected readonly visiblePages = computed(() => {
+    const total = this.totalPages();
+    const current = this.currentPage;
+    const pages: number[] = [];
 
     if (total <= 5) {
       for (let i = 1; i <= total; i++) {
-        paginas.push(i);
+        pages.push(i);
       }
     } else {
-      if (atual <= 3) {
-        paginas.push(1, 2, 3, 4, 5);
-      } else if (atual >= total - 2) {
+      if (current <= 3) {
+        pages.push(1, 2, 3, 4, 5);
+      } else if (current >= total - 2) {
         for (let i = total - 4; i <= total; i++) {
-          paginas.push(i);
+          pages.push(i);
         }
       } else {
-        for (let i = atual - 2; i <= atual + 2; i++) {
-          paginas.push(i);
+        for (let i = current - 2; i <= current + 2; i++) {
+          pages.push(i);
         }
       }
     }
 
-    return paginas;
+    return pages;
   });
 
-  protected irParaPagina(pagina: number): void {
-    if (pagina >= 1 && pagina <= this.totalPaginas() && pagina !== this.paginaAtual) {
-      this.paginaAlterada.emit(pagina);
-      this.emitirInfo(pagina);
+  protected goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages() && page !== this.currentPage) {
+      this.pageChanged.emit(page);
+      this.emitInfo(page);
     }
   }
 
-  protected paginaAnterior(): void {
-    if (this.temPaginaAnterior()) {
-      this.irParaPagina(this.paginaAtual - 1);
+  protected previousPage(): void {
+    if (this.hasPreviousPage()) {
+      this.goToPage(this.currentPage - 1);
     }
   }
 
-  protected proximaPagina(): void {
-    if (this.temProximaPagina()) {
-      this.irParaPagina(this.paginaAtual + 1);
+  protected nextPage(): void {
+    if (this.hasNextPage()) {
+      this.goToPage(this.currentPage + 1);
     }
   }
 
-  private emitirInfo(pagina: number): void {
-    this.infoPaginacao.emit({
-      currentPage: pagina,
-      totalPages: this.totalPaginas(),
-      totalItems: this.totalItens,
-      itemsPerPage: this.itensPorPagina,
+  private emitInfo(page: number): void {
+    this.paginationInfo.emit({
+      currentPage: page,
+      totalPages: this.totalPages(),
+      totalItems: this.totalItems,
+      itemsPerPage: this.itemsPerPage,
     });
   }
 }

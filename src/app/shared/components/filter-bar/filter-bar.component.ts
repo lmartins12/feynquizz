@@ -23,46 +23,46 @@ import { SortOption, AppliedFilter } from '../../../core';
 })
 export class FilterBarComponent {
   @Input() placeholder: string = 'Buscar...';
-  @Input() opcoesOrdenacao: SortOption[] = [];
-  @Input() ordenacaoSelecionada: string = '';
-  @Input() valorBusca: string = '';
+  @Input() sortOptions: SortOption[] = [];
+  @Input() selectedSort: string = '';
+  @Input() searchValue: string = '';
 
-  @Output() buscaAlterada = new EventEmitter<string>();
-  @Output() ordenacaoAlterada = new EventEmitter<string>();
-  @Output() filtroAplicado = new EventEmitter<AppliedFilter>();
+  @Output() searchChanged = new EventEmitter<string>();
+  @Output() sortChanged = new EventEmitter<string>();
+  @Output() filterApplied = new EventEmitter<AppliedFilter>();
 
-  protected readonly termoBusca = signal<string>('');
-  protected readonly ordenacaoAtual = signal<string>('');
+  protected readonly searchTerm = signal<string>('');
+  protected readonly currentSort = signal<string>('');
 
   ngOnInit(): void {
-    this.termoBusca.set(this.valorBusca);
-    this.ordenacaoAtual.set(this.ordenacaoSelecionada);
+    this.searchTerm.set(this.searchValue);
+    this.currentSort.set(this.selectedSort);
   }
 
-  protected alterarBusca(evento: any): void {
-    const valor = evento.target.value;
-    this.termoBusca.set(valor);
-    this.buscaAlterada.emit(valor);
-    this.emitirFiltro();
+  protected changeSearch(event: any): void {
+    const value = event.target.value;
+    this.searchTerm.set(value);
+    this.searchChanged.emit(value);
+    this.emitFilter();
   }
 
-  protected alterarOrdenacao(evento: any): void {
-    const valor = evento.detail.value;
-    this.ordenacaoAtual.set(valor);
-    this.ordenacaoAlterada.emit(valor);
-    this.emitirFiltro();
+  protected changeSort(event: any): void {
+    const value = event.detail.value;
+    this.currentSort.set(value);
+    this.sortChanged.emit(value);
+    this.emitFilter();
   }
 
-  protected limparBusca(): void {
-    this.termoBusca.set('');
-    this.buscaAlterada.emit('');
-    this.emitirFiltro();
+  protected clearSearch(): void {
+    this.searchTerm.set('');
+    this.searchChanged.emit('');
+    this.emitFilter();
   }
 
-  private emitirFiltro(): void {
-    this.filtroAplicado.emit({
-      search: this.termoBusca(),
-      sort: this.ordenacaoAtual(),
+  private emitFilter(): void {
+    this.filterApplied.emit({
+      search: this.searchTerm(),
+      sort: this.currentSort(),
     });
   }
 }

@@ -1,62 +1,64 @@
-.filter-container {
+.filter-bar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 12px;
-  padding: 8px 16px;
+  padding: 16px;
   background: var(--ion-color-light);
-  border-bottom: 1px solid var(--ion-color-light-shade);
+  border-radius: 12px;
+  margin-bottom: 16px;
 
   ion-searchbar {
-    flex: 1;
     --background: var(--ion-color-step-50);
-    --border-radius: 12px;
+    --border-radius: 8px;
     --box-shadow: none;
+    --placeholder-color: var(--ion-color-medium);
+    --color: var(--ion-color-dark);
     --icon-color: var(--ion-color-medium);
-    --placeholder-color: var(--ion-color-medium);
-    --color: var(--ion-color-dark);
-
-    &.searchbar-has-focus {
-      --background: var(--ion-color-step-100);
-    }
+    --clear-button-color: var(--ion-color-medium);
+    padding: 0;
   }
 
-  .ordenacao-select {
-    min-width: 120px;
-    max-width: 160px;
-    --background: var(--ion-color-step-50);
-    --border-radius: 12px;
-    --padding-start: 12px;
-    --padding-end: 12px;
-    --color: var(--ion-color-dark);
-    --placeholder-color: var(--ion-color-medium);
-    font-size: 0.9rem;
+  .sort-item {
+    --background: transparent;
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-end: 0;
 
-    &::part(icon) {
-      color: var(--ion-color-medium);
+    ion-select {
+      --placeholder-color: var(--ion-color-medium);
+      --color: var(--ion-color-dark);
+      font-size: 0.9rem;
     }
   }
 }
 
-:host-context(.ios) {
-  .filter-container {
+// Responsive design
+@media (min-width: 768px) {
+  .filter-bar {
+    flex-direction: row;
+    align-items: center;
+
     ion-searchbar {
-      --border-radius: 10px;
+      flex: 1;
     }
 
-    .ordenacao-select {
-      --border-radius: 10px;
+    .sort-item {
+      min-width: 200px;
+      margin-left: 16px;
     }
   }
 }
 
-:host-context(.md) {
-  .filter-container {
-    ion-searchbar {
-      --border-radius: 12px;
-    }
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .filter-bar {
+    background: var(--ion-color-step-100);
 
-    .ordenacao-select {
-      --border-radius: 12px;
+    .sort-item {
+      ion-select {
+        --placeholder-color: var(--ion-color-step-400);
+        --color: var(--ion-color-step-50);
+      }
     }
   }
 }

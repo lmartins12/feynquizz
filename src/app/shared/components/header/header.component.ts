@@ -25,18 +25,18 @@ export class HeaderComponent {
   @Input() title: string = '';
   @Input() showConfig: boolean = false;
 
-  @Output() voltarClicado = new EventEmitter<void>();
-  @Output() configClicado = new EventEmitter<void>();
+  @Output() backClicked = new EventEmitter<void>();
+  @Output() configClicked = new EventEmitter<void>();
 
-  protected voltarPagina(): void {
+  protected goBack(): void {
     if (this.canGoBack) {
-      this.voltarClicado.emit();
+      this.backClicked.emit();
       setTimeout(() => this.router.navigate(['..']));
     }
   }
 
-  protected abrirConfig(): void {
-    this.configClicado.emit();
+  protected openConfig(): void {
+    this.configClicked.emit();
     setTimeout(() => this.router.navigate(['/config']));
   }
 }
