@@ -1,0 +1,134 @@
+<ion-content [fullscreen]="true">
+  <!-- Header -->
+  <app-header
+    title="FeynQuizz"
+    [showConfig]="true"
+    (configClicked)="navController.navigateForward('/config')"
+  >
+  </app-header>
+
+  <!-- Conteúdo Principal -->
+  <div class="home-container">
+    <!-- Loading State -->
+    <div *ngIf="topicState.loading()" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Carregando tópicos...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="topicState.error() && !topicState.loading()" class="error-container">
+      <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+      <h3>Ops! Algo deu errado</h3>
+      <p>{{ topicState.error() }}</p>
+      <ion-button fill="outline" (click)="retryLoad()">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Tentar Novamente
+      </ion-button>
+    </div>
+
+    <!-- Content State -->
+    <div *ngIf="!topicState.loading() && !topicState.error()" class="content-container">
+      <!-- Empty State -->
+      <div *ngIf="!hasTopics()" class="empty-state">
+        <ion-icon name="library-outline" size="large"></ion-icon>
+        <h3>Nenhum tópico encontrado</h3>
+        <p>Comece criando seu primeiro tópico de estudo!</p>
+        <ion-button (click)="openTopicForm()">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          Criar Primeiro Tópico
+        </ion-button>
+      </div>
+
+      <!-- Topics List -->
+      <div *ngIf="hasTopics()" class="topics-section">
+        <!-- Filter Bar -->
+        <app-filter-bar
+          placeholder="Buscar tópicos..."
+          [sortOptions]="sortOptions"
+          (filterApplied)="onFilterApplied($event)"
+        >
+        </app-filter-bar>
+
+        <!-- No Results After Filter -->
+        <div *ngIf="!hasFilteredResults()" class="no-results">
+          <ion-icon name="search-outline" size="large"></ion-icon>
+          <h4>Nenhum resultado encontrado</h4>
+          <p>Tente ajustar os filtros de busca</p>
+        </div>
+
+        <!-- Topics Grid -->
+        <div *ngIf="hasFilteredResults()" class="topics-grid">
+          <div
+            *ngFor="let topic of currentPageTopics(); trackBy: trackByTopicId"
+            class="topic-card"
+            (click)="navigateToTopic(topic.id)"
+          >
+            <!-- Card Header -->
+            <div class="card-header">
+              <h3>{{ topic.name }}</h3>
+              <ion-button
+                fill="clear"
+                size="small"
+                color="danger"
+                (click)="$event.stopPropagation(); deleteTopic(topic)"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+
+            <!-- Card Content -->
+            <div class="card-content">
+              <p class="emphasis">{{ topic.emphasis }}</p>
+
+              <div class="card-stats">
+                <div class="stat">
+                  <ion-icon name="help-circle-outline"></ion-icon>
+                  <span>{{ getQuestionsCount(topic) }} pergunta(s)</span>
+                </div>
+
+                <div class="stat">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  <span>{{ formatDate(topic.createdAt) }}</span>
+                </div>
+
+                <div class="stat" *ngIf="topic.lastScore !== undefined">
+                  <ion-icon name="star-outline"></ion-icon>
+                  <span>{{ formatScore(topic.lastScore) }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="card-footer">
+              <ion-chip [color]="getQuestionsCount(topic) > 0 ? 'success' : 'warning'" size="small">
+                {{ getQuestionsCount(topic) > 0 ? 'Pronto para quiz' : 'Adicionar perguntas' }}
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <app-pagination
+          *ngIf="showPagination()"
+          [totalItems]="totalItems()"
+          [itemsPerPage]="pagination.itemsPerPage"
+          [currentPage]="topicState.currentPage()"
+          (pageChanged)="onPageChanged($event)"
+          (paginationInfo)="onPaginationInfo($event)"
+        >
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAB Button -->
+  <app-fab-add-button
+    *ngIf="!topicState.loading()"
+    icon="add"
+    color="primary"
+    position="bottom"
+    side="end"
+    (clicked)="openTopicForm()"
+  >
+  </app-fab-add-button>
+</ion-content>

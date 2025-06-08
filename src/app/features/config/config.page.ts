@@ -5,11 +5,12 @@ import { AiConfigService } from '../../data/storage';
 import { AiConfig } from '../../core/models';
 import { CommonModule } from '@angular/common';
 import { saveOutline, keyOutline } from 'ionicons/icons';
+import { HeaderComponent } from '../../shared';
 
 @Component({
   selector: 'app-config',
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, HeaderComponent],
   templateUrl: './config.page.html',
   styleUrls: ['./config.page.scss'],
 })
