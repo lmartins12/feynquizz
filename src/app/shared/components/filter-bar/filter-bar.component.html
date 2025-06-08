@@ -1,0 +1,24 @@
+<div class="filter-container">
+  <ion-searchbar
+    [placeholder]="placeholder"
+    [value]="termoBusca()"
+    (ionInput)="alterarBusca($event)"
+    (ionClear)="limparBusca()"
+    show-clear-button="focus"
+    debounce="300"
+  >
+  </ion-searchbar>
+
+  <ion-select
+    *ngIf="opcoesOrdenacao.length > 0"
+    [value]="ordenacaoAtual()"
+    (ionChange)="alterarOrdenacao($event)"
+    placeholder="Ordenar por"
+    interface="popover"
+    class="ordenacao-select"
+  >
+    <ion-select-option *ngFor="let opcao of opcoesOrdenacao" [value]="opcao.valor">
+      {{ opcao.texto }}
+    </ion-select-option>
+  </ion-select>
+</div>

@@ -1,0 +1,62 @@
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--ion-color-light);
+  border-bottom: 1px solid var(--ion-color-light-shade);
+
+  ion-searchbar {
+    flex: 1;
+    --background: var(--ion-color-step-50);
+    --border-radius: 12px;
+    --box-shadow: none;
+    --icon-color: var(--ion-color-medium);
+    --placeholder-color: var(--ion-color-medium);
+    --color: var(--ion-color-dark);
+
+    &.searchbar-has-focus {
+      --background: var(--ion-color-step-100);
+    }
+  }
+
+  .ordenacao-select {
+    min-width: 120px;
+    max-width: 160px;
+    --background: var(--ion-color-step-50);
+    --border-radius: 12px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --color: var(--ion-color-dark);
+    --placeholder-color: var(--ion-color-medium);
+    font-size: 0.9rem;
+
+    &::part(icon) {
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+:host-context(.ios) {
+  .filter-container {
+    ion-searchbar {
+      --border-radius: 10px;
+    }
+
+    .ordenacao-select {
+      --border-radius: 10px;
+    }
+  }
+}
+
+:host-context(.md) {
+  .filter-container {
+    ion-searchbar {
+      --border-radius: 12px;
+    }
+
+    .ordenacao-select {
+      --border-radius: 12px;
+    }
+  }
+}

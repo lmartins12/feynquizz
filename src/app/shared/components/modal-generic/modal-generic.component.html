@@ -1,0 +1,33 @@
+<ion-modal [isOpen]="isOpen" (didDismiss)="fecharModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ titulo }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="fecharModal()">
+            <ion-icon name="close" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <p class="mensagem">{{ mensagem }}</p>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        <div class="botoes-container">
+          <ion-button
+            *ngFor="let botao of botoes; let i = index"
+            [color]="botao.cor || 'primary'"
+            (click)="clicarBotao(i)"
+            [fill]="i === 0 ? 'outline' : 'solid'"
+          >
+            {{ botao.texto }}
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

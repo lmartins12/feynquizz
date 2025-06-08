@@ -1,0 +1,48 @@
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+
+    ion-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    ion-button {
+      --color: var(--ion-color-primary-contrast);
+      --padding-start: 8px;
+      --padding-end: 8px;
+
+      ion-icon {
+        font-size: 1.5rem;
+
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:hover {
+        --background: rgba(255, 255, 255, 0.1);
+      }
+
+      &:active {
+        --background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}
+
+:host-context(.ios) {
+  ion-header ion-toolbar {
+    --min-height: 44px;
+  }
+}
+
+:host-context(.md) {
+  ion-header ion-toolbar {
+    --min-height: 56px;
+  }
+}

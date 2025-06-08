@@ -1,0 +1,80 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--ion-color-light);
+  border-top: 1px solid var(--ion-color-light-shade);
+
+  .nav-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --color: var(--ion-color-medium);
+    min-width: 40px;
+    min-height: 40px;
+
+    &[disabled] {
+      --opacity: 0.3;
+    }
+
+    ion-icon {
+      font-size: 1.2rem;
+    }
+  }
+
+  .paginas-numeradas {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    .pagina-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      min-width: 40px;
+      min-height: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+
+      &[fill='solid'] {
+        --border-radius: 8px;
+      }
+
+      &[fill='clear'] {
+        --color: var(--ion-color-medium);
+
+        &:hover {
+          --background: var(--ion-color-step-100);
+        }
+      }
+    }
+  }
+}
+
+.info-paginacao {
+  text-align: center;
+  padding: 8px 16px;
+  background: var(--ion-color-light);
+
+  ion-text {
+    font-size: 0.85rem;
+  }
+}
+
+:host-context(.ios) {
+  .pagination-container {
+    .nav-button,
+    .paginas-numeradas .pagina-button {
+      --border-radius: 8px;
+    }
+  }
+}
+
+:host-context(.md) {
+  .pagination-container {
+    .nav-button,
+    .paginas-numeradas .pagina-button {
+      --border-radius: 8px;
+    }
+  }
+}

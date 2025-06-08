@@ -1,0 +1,42 @@
+<div class="pagination-container" *ngIf="totalPaginas() > 1">
+  <ion-button
+    fill="clear"
+    size="small"
+    [disabled]="!temPaginaAnterior()"
+    (click)="paginaAnterior()"
+    class="nav-button"
+  >
+    <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+  </ion-button>
+
+  <div class="paginas-numeradas">
+    <ion-button
+      *ngFor="let pagina of paginasVisiveis()"
+      [fill]="pagina === paginaAtual ? 'solid' : 'clear'"
+      [color]="pagina === paginaAtual ? 'primary' : 'medium'"
+      size="small"
+      (click)="irParaPagina(pagina)"
+      class="pagina-button"
+    >
+      {{ pagina }}
+    </ion-button>
+  </div>
+
+  <ion-button
+    fill="clear"
+    size="small"
+    [disabled]="!temProximaPagina()"
+    (click)="proximaPagina()"
+    class="nav-button"
+  >
+    <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+  </ion-button>
+</div>
+
+<div class="info-paginacao" *ngIf="totalItens > 0">
+  <ion-text color="medium">
+    {{ (paginaAtual - 1) * itensPorPagina + 1 }} -
+    {{ Math.min(paginaAtual * itensPorPagina, totalItens) }}
+    de {{ totalItens }} itens
+  </ion-text>
+</div>
