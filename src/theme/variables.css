@@ -1,20 +1,55 @@
 @import "@ionic/angular/css/palettes/dark.class.css";
 
 :root {
+  /* Background Colors */
   --color-background: #FFFFED;
+  --color-surface: #FFFFFF;
+  --color-surface-variant: #F5F5F5;
+  
+  /* Text Colors */
   --color-text-primary: #202020;
   --color-text-secondary: #505050;
   --color-text-disabled: #A0A0A0;
-
+  --color-text-inverse: #FAFAFA;
+  
+  /* Button Colors */
   --color-button-primary: #202020;
+  --color-button-primary-hover: #404040;
+  --color-button-primary-active: #101010;
   --color-button-text: #FAFAFA;
   --color-button-secondary: #E0E0D0;
-
+  --color-button-secondary-hover: #D0D0C0;
+  --color-button-secondary-active: #C0C0B0;
+  
+  /* Interactive Colors */
   --color-highlight: #B0C4DE;
   --color-highlight-hover: #94B3C8;
-
+  --color-highlight-active: #7BA2B2;
+  
+  /* Status Colors */
   --color-success: #A3D9A5;
+  --color-success-hover: #8FCC91;
+  --color-success-active: #7BBF7D;
   --color-error: #F8A5A5;
+  --color-error-hover: #F58B8B;
+  --color-error-active: #F27171;
   --color-warning: #FCE38A;
+  --color-warning-hover: #FBD970;
+  --color-warning-active: #FACF56;
   --color-info: #A7D6F1;
+  --color-info-hover: #8DCAED;
+  --color-info-active: #73BEE9;
+  
+  /* Border Colors */
+  --color-border: #E0E0D0;
+  --color-border-light: #F0F0E0;
+  --color-border-dark: #D0D0C0;
+  
+  /* Shadow Colors */
+  --color-shadow-light: rgba(0, 0, 0, 0.1);
+  --color-shadow-medium: rgba(0, 0, 0, 0.15);
+  --color-shadow-dark: rgba(0, 0, 0, 0.25);
+  
+  /* Loading Overlay */
+  --color-overlay: rgba(255, 255, 255, 0.8);
 }

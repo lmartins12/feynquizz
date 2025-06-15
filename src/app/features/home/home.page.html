@@ -1,12 +1,9 @@
+<app-header
+  title="FeynQuizz"
+  [showConfig]="true"
+  (configClicked)="navController.navigateForward('/config')"
+></app-header>
 <ion-content [fullscreen]="true">
-  <!-- Header -->
-  <app-header
-    title="FeynQuizz"
-    [showConfig]="true"
-    (configClicked)="navController.navigateForward('/config')"
-  >
-  </app-header>
-
   <!-- Conteúdo Principal -->
   <div class="home-container">
     <!-- Loading State -->
@@ -30,11 +27,15 @@
     <div *ngIf="!topicState.loading() && !topicState.error()" class="content-container">
       <!-- Empty State -->
       <div *ngIf="!hasTopics()" class="empty-state">
-        <ion-icon name="library-outline" size="large"></ion-icon>
+        <ion-icon
+          name="library-outline"
+          size="large"
+          color="var(--color-button-primary)"
+        ></ion-icon>
         <h3>Nenhum tópico encontrado</h3>
         <p>Comece criando seu primeiro tópico de estudo!</p>
         <ion-button (click)="openTopicForm()">
-          <ion-icon name="add-outline" slot="start"></ion-icon>
+          <ion-icon name="add-outline" slot="start" color="var(--color-button-text)"></ion-icon>
           Criar Primeiro Tópico
         </ion-button>
       </div>
@@ -120,15 +121,4 @@
       </div>
     </div>
   </div>
-
-  <!-- FAB Button -->
-  <app-fab-add-button
-    *ngIf="!topicState.loading()"
-    icon="add"
-    color="primary"
-    position="bottom"
-    side="end"
-    (clicked)="openTopicForm()"
-  >
-  </app-fab-add-button>
 </ion-content>

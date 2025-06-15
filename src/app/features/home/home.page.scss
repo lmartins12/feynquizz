@@ -1,6 +1,7 @@
 .home-container {
   padding: 16px;
   min-height: 100vh;
+  background: var(--color-background);
 }
 
 .loading-container {
@@ -12,12 +13,12 @@
   gap: 16px;
 
   ion-spinner {
-    --color: var(--ion-color-primary);
+    --color: var(--color-button-primary);
     transform: scale(1.5);
   }
 
   p {
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
     font-size: 1rem;
     margin: 0;
   }
@@ -34,18 +35,18 @@
   padding: 24px;
 
   ion-icon {
-    color: var(--ion-color-danger);
+    color: var(--color-error);
   }
 
   h3 {
-    color: var(--ion-color-dark);
+    color: var(--color-text-primary);
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
   }
 
   p {
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
     margin: 0;
     font-size: 1rem;
     line-height: 1.5;
@@ -66,19 +67,15 @@
   text-align: center;
   padding: 24px;
 
-  ion-icon {
-    color: var(--ion-color-medium);
-  }
-
   h3 {
-    color: var(--ion-color-dark);
+    color: var(--color-text-primary);
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
   }
 
   p {
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
     margin: 0;
     font-size: 1rem;
     line-height: 1.5;
@@ -86,7 +83,8 @@
   }
 
   ion-button {
-    margin-top: 8px;
+    --background: var(--color-button-primary);
+    --color: var(--color-button-text);
   }
 }
 
@@ -100,18 +98,18 @@
   gap: 12px;
 
   ion-icon {
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
   }
 
   h4 {
-    color: var(--ion-color-dark);
+    color: var(--color-text-primary);
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
   }
 
   p {
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
     margin: 0;
     font-size: 0.9rem;
   }
@@ -138,22 +136,23 @@
 }
 
 .topic-card {
-  background: var(--ion-color-light);
+  background: var(--color-surface);
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--color-shadow-light);
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid var(--ion-color-step-100);
+  border: 1px solid var(--color-border);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px var(--color-shadow-medium);
+    border-color: var(--color-border-dark);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--color-shadow-light);
   }
 
   .card-header {
@@ -163,7 +162,7 @@
     margin-bottom: 12px;
 
     h3 {
-      color: var(--ion-color-dark);
+      color: var(--color-text-primary);
       font-size: 1.25rem;
       font-weight: 600;
       margin: 0;
@@ -185,7 +184,7 @@
     margin-bottom: 16px;
 
     .emphasis {
-      color: var(--ion-color-medium);
+      color: var(--color-text-secondary);
       font-size: 0.9rem;
       line-height: 1.4;
       margin: 0 0 16px 0;
@@ -202,15 +201,16 @@
         align-items: center;
         gap: 8px;
         font-size: 0.85rem;
-        color: var(--ion-color-medium);
+        color: var(--color-text-secondary);
 
         ion-icon {
           font-size: 1rem;
-          color: var(--ion-color-primary);
+          color: var(--color-button-primary);
         }
 
         span {
           font-weight: 500;
+          color: var(--color-text-primary);
         }
       }
     }
@@ -222,8 +222,8 @@
     align-items: center;
 
     ion-chip {
-      --background: var(--ion-color-step-50);
-      --color: var(--ion-color-dark);
+      --background: var(--color-button-secondary);
+      --color: var(--color-text-primary);
       font-size: 0.75rem;
       font-weight: 500;
       margin: 0;
@@ -280,16 +280,14 @@
 
 .topic-card {
   animation: fadeInUp 0.3s ease-out;
-}
 
-.topic-card {
   &:focus {
-    outline: 2px solid var(--ion-color-primary);
+    outline: 2px solid var(--color-button-primary);
     outline-offset: 2px;
   }
 
   &:focus-visible {
-    outline: 2px solid var(--ion-color-primary);
+    outline: 2px solid var(--color-button-primary);
     outline-offset: 2px;
   }
 }

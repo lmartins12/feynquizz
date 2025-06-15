@@ -4,18 +4,19 @@
 
 ion-modal {
   --border-radius: 16px;
-  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 10px 15px var(--color-shadow-medium);
 }
 
 ion-header {
   ion-toolbar {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
+    --background: var(--color-button-primary);
+    --color: var(--color-button-text);
   }
 
   ion-title {
     font-weight: 600;
     font-size: 1.2rem;
+    color: var(--color-button-text);
   }
 }
 
@@ -24,12 +25,13 @@ ion-content {
   --padding-bottom: 24px;
   --padding-start: 24px;
   --padding-end: 24px;
+  --background: var(--color-surface);
 }
 
 .message {
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--ion-color-medium);
+  color: var(--color-text-secondary);
   margin-bottom: 24px;
   text-align: center;
 }

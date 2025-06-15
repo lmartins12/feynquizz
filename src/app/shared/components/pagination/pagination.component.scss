@@ -4,9 +4,10 @@
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: var(--ion-color-light);
+  background: var(--color-surface);
   border-radius: 12px;
   margin-top: 16px;
+  border: 1px solid var(--color-border);
 }
 
 .pagination-controls {
@@ -38,15 +39,15 @@
   font-weight: 500;
 
   &[fill='solid'] {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
+    --background: var(--color-button-primary);
+    --color: var(--color-button-text);
   }
 
   &[fill='clear'] {
-    --color: var(--ion-color-medium);
+    --color: var(--color-text-secondary);
 
     &:hover {
-      --background: var(--ion-color-step-100);
+      --background: var(--color-button-secondary);
     }
   }
 }
@@ -58,7 +59,7 @@
 
   .info-text {
     font-size: 0.875rem;
-    color: var(--ion-color-medium);
+    color: var(--color-text-secondary);
     font-weight: 400;
   }
 }

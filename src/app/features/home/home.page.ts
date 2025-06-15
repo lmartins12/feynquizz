@@ -5,26 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { BasePage } from '../../core/base/base-page';
 import { TopicService } from '../../data/storage';
 import { Topic, SortOption, AppliedFilter, PaginationInfo } from '../../core/models';
-import {
-  HeaderComponent,
-  FilterBarComponent,
-  PaginationComponent,
-  FabAddButtonComponent,
-} from '../../shared/components';
+import { HeaderComponent, FilterBarComponent, PaginationComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    IonicModule,
-    HeaderComponent,
-    FilterBarComponent,
-    PaginationComponent,
-    FabAddButtonComponent,
-  ],
+  imports: [CommonModule, IonicModule, HeaderComponent, FilterBarComponent, PaginationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage extends BasePage {
